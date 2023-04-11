@@ -35,7 +35,7 @@ class CompanyRepositoryDio implements CompanyRepository {
     }
     if (companyDetailsResponse.data!['Note'] != null ||
         companyDetailsResponse.data!.length == 1) {
-      throw ApiException.notFound(companySym);
+      throw const ApiException.tokenLimitExceeded();
     }
     late final CompanyDetails companyDetails;
     try {
@@ -58,6 +58,21 @@ class CompanyRepositoryDio implements CompanyRepository {
         await companyTrackedRepository.getCompanySymbols();
     final futureCompanyDetails =
         trackedCompanySymbols.map(getCompanyDetailsBySym).toList();
+    final companyDetails = await Future.wait(futureCompanyDetails);
+    return companyDetails;
+  }
+
+  @override
+  Future<List<AsyncValue<CompanyDetails>>> getMaybeTrackedCompanies() async {
+    final trackedCompanySymbols =
+        await companyTrackedRepository.getCompanySymbols();
+    final futureCompanyDetails = trackedCompanySymbols
+        .map(getCompanyDetailsBySym)
+        .map<Future<AsyncValue<CompanyDetails>>>(
+          (futureDetales) =>
+              AsyncValue.guard<CompanyDetails>(() => futureDetales),
+        )
+        .toList();
     return Future.wait(futureCompanyDetails);
   }
 }
