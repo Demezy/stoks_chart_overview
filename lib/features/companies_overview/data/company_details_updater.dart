@@ -1,4 +1,5 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:stoks_chart_overview/exceptions/api_exception.dart';
 import 'package:stoks_chart_overview/features/companies_overview/data/companies_overview_providers.dart';
 import 'package:stoks_chart_overview/features/companies_overview/domain/company_details.dart';
 import 'package:stoks_chart_overview/features/companies_overview/domain/company_repository.dart';
@@ -25,7 +26,7 @@ class CompanyDetailsUpdater extends StateNotifier<AsyncValue<CompaniesInfo>> {
       state = const AsyncValue.loading();
       final updatedData = await companyRepository.getTrackedCompanies();
       state = AsyncValue.data(updatedData);
-    } catch (error, stackTrace) {
+    } on ApiException catch (error, stackTrace) {
       state = AsyncValue.error(error, stackTrace);
     }
   }
