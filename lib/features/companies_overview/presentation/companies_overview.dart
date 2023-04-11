@@ -7,6 +7,7 @@ import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:go_router/go_router.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:stoks_chart_overview/config/consts.dart';
+import 'package:stoks_chart_overview/exceptions/api_exception.dart';
 import 'package:stoks_chart_overview/features/companies_overview/data/company_detales_updater.dart';
 
 class CompaniesOverview extends HookConsumerWidget {
@@ -21,13 +22,16 @@ class CompaniesOverview extends HookConsumerWidget {
         title: const Text('main page'),
       ),
       body: companyesDetails.when(
+        loading: () => const Center(child: CircularProgressIndicator()),
         error: (error, stackTrace) {
           if (kDebugMode) {
             print(stackTrace);
           }
-          return Text(error.toString());
+          if (error is ApiException){
+            return Text(error.message());
+          }
+          return Text('$error');
         },
-        loading: () => const Center(child: CircularProgressIndicator()),
         data: (details) => AspectRatio(
           aspectRatio: 1.3,
           child: AspectRatio(
