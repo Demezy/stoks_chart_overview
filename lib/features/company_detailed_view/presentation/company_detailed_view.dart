@@ -1,14 +1,13 @@
 import 'dart:math';
 
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
-import 'package:stoks_chart_overview/features/companies_overview/domain/company_detales.dart';
+import 'package:stoks_chart_overview/features/companies_overview/domain/company_details.dart';
 
 class CompanyDetailedView extends StatelessWidget {
-  final CompanyDetales companyDetales;
+  final CompanyDetails companyDetails;
 
   const CompanyDetailedView({
-    required this.companyDetales,
+    required this.companyDetails,
     super.key,
   });
 
@@ -16,7 +15,7 @@ class CompanyDetailedView extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(companyDetales.name),
+        title: Text(companyDetails.name),
       ),
       body: ListView(
         children: [
@@ -24,11 +23,11 @@ class CompanyDetailedView extends StatelessWidget {
             size: min(MediaQuery.of(context).size.width * 0.5, 300),
           ),
           Card(
-            child: Text('Description: ${companyDetales.description}'),
+            child: Text('Description: ${companyDetails.description}'),
           ),
           Card(
             child: Text(
-              'Capitalisation: ${companyDetales.marketCapitalisation}',
+              'Capitalisation: ${companyDetails.marketCapitalisation}',
             ),
           ),
         ],
