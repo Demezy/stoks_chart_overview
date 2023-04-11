@@ -18,21 +18,24 @@ final _privateConstructorUsedError = UnsupportedError(
 mixin _$ApiException {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() apiRateLimitExceeded,
+    required TResult Function() tokenLimitExceeded,
+    required TResult Function(String sym) notFound,
     required TResult Function() unrecognizedServerResponse,
     required TResult Function() apiUnavailable,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? apiRateLimitExceeded,
+    TResult? Function()? tokenLimitExceeded,
+    TResult? Function(String sym)? notFound,
     TResult? Function()? unrecognizedServerResponse,
     TResult? Function()? apiUnavailable,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? apiRateLimitExceeded,
+    TResult Function()? tokenLimitExceeded,
+    TResult Function(String sym)? notFound,
     TResult Function()? unrecognizedServerResponse,
     TResult Function()? apiUnavailable,
     required TResult orElse(),
@@ -40,7 +43,8 @@ mixin _$ApiException {
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(_ApiRateLimitExceeded value) apiRateLimitExceeded,
+    required TResult Function(_TokenLimitExceeded value) tokenLimitExceeded,
+    required TResult Function(_NotFound value) notFound,
     required TResult Function(_UnrecognizedServerResponse value)
         unrecognizedServerResponse,
     required TResult Function(_ApiUnavailable value) apiUnavailable,
@@ -48,7 +52,8 @@ mixin _$ApiException {
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_ApiRateLimitExceeded value)? apiRateLimitExceeded,
+    TResult? Function(_TokenLimitExceeded value)? tokenLimitExceeded,
+    TResult? Function(_NotFound value)? notFound,
     TResult? Function(_UnrecognizedServerResponse value)?
         unrecognizedServerResponse,
     TResult? Function(_ApiUnavailable value)? apiUnavailable,
@@ -56,7 +61,8 @@ mixin _$ApiException {
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(_ApiRateLimitExceeded value)? apiRateLimitExceeded,
+    TResult Function(_TokenLimitExceeded value)? tokenLimitExceeded,
+    TResult Function(_NotFound value)? notFound,
     TResult Function(_UnrecognizedServerResponse value)?
         unrecognizedServerResponse,
     TResult Function(_ApiUnavailable value)? apiUnavailable,
@@ -84,44 +90,44 @@ class _$ApiExceptionCopyWithImpl<$Res, $Val extends ApiException>
 }
 
 /// @nodoc
-abstract class _$$_ApiRateLimitExceededCopyWith<$Res> {
-  factory _$$_ApiRateLimitExceededCopyWith(_$_ApiRateLimitExceeded value,
-          $Res Function(_$_ApiRateLimitExceeded) then) =
-      __$$_ApiRateLimitExceededCopyWithImpl<$Res>;
+abstract class _$$_TokenLimitExceededCopyWith<$Res> {
+  factory _$$_TokenLimitExceededCopyWith(_$_TokenLimitExceeded value,
+          $Res Function(_$_TokenLimitExceeded) then) =
+      __$$_TokenLimitExceededCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$$_ApiRateLimitExceededCopyWithImpl<$Res>
-    extends _$ApiExceptionCopyWithImpl<$Res, _$_ApiRateLimitExceeded>
-    implements _$$_ApiRateLimitExceededCopyWith<$Res> {
-  __$$_ApiRateLimitExceededCopyWithImpl(_$_ApiRateLimitExceeded _value,
-      $Res Function(_$_ApiRateLimitExceeded) _then)
+class __$$_TokenLimitExceededCopyWithImpl<$Res>
+    extends _$ApiExceptionCopyWithImpl<$Res, _$_TokenLimitExceeded>
+    implements _$$_TokenLimitExceededCopyWith<$Res> {
+  __$$_TokenLimitExceededCopyWithImpl(
+      _$_TokenLimitExceeded _value, $Res Function(_$_TokenLimitExceeded) _then)
       : super(_value, _then);
 }
 
 /// @nodoc
 
-class _$_ApiRateLimitExceeded
+class _$_TokenLimitExceeded
     with DiagnosticableTreeMixin
-    implements _ApiRateLimitExceeded {
-  const _$_ApiRateLimitExceeded();
+    implements _TokenLimitExceeded {
+  const _$_TokenLimitExceeded();
 
   @override
   String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
-    return 'ApiException.apiRateLimitExceeded()';
+    return 'ApiException.tokenLimitExceeded()';
   }
 
   @override
   void debugFillProperties(DiagnosticPropertiesBuilder properties) {
     super.debugFillProperties(properties);
     properties
-        .add(DiagnosticsProperty('type', 'ApiException.apiRateLimitExceeded'));
+        .add(DiagnosticsProperty('type', 'ApiException.tokenLimitExceeded'));
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$_ApiRateLimitExceeded);
+        (other.runtimeType == runtimeType && other is _$_TokenLimitExceeded);
   }
 
   @override
@@ -130,33 +136,36 @@ class _$_ApiRateLimitExceeded
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() apiRateLimitExceeded,
+    required TResult Function() tokenLimitExceeded,
+    required TResult Function(String sym) notFound,
     required TResult Function() unrecognizedServerResponse,
     required TResult Function() apiUnavailable,
   }) {
-    return apiRateLimitExceeded();
+    return tokenLimitExceeded();
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? apiRateLimitExceeded,
+    TResult? Function()? tokenLimitExceeded,
+    TResult? Function(String sym)? notFound,
     TResult? Function()? unrecognizedServerResponse,
     TResult? Function()? apiUnavailable,
   }) {
-    return apiRateLimitExceeded?.call();
+    return tokenLimitExceeded?.call();
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? apiRateLimitExceeded,
+    TResult Function()? tokenLimitExceeded,
+    TResult Function(String sym)? notFound,
     TResult Function()? unrecognizedServerResponse,
     TResult Function()? apiUnavailable,
     required TResult orElse(),
   }) {
-    if (apiRateLimitExceeded != null) {
-      return apiRateLimitExceeded();
+    if (tokenLimitExceeded != null) {
+      return tokenLimitExceeded();
     }
     return orElse();
   }
@@ -164,43 +173,202 @@ class _$_ApiRateLimitExceeded
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(_ApiRateLimitExceeded value) apiRateLimitExceeded,
+    required TResult Function(_TokenLimitExceeded value) tokenLimitExceeded,
+    required TResult Function(_NotFound value) notFound,
     required TResult Function(_UnrecognizedServerResponse value)
         unrecognizedServerResponse,
     required TResult Function(_ApiUnavailable value) apiUnavailable,
   }) {
-    return apiRateLimitExceeded(this);
+    return tokenLimitExceeded(this);
   }
 
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_ApiRateLimitExceeded value)? apiRateLimitExceeded,
+    TResult? Function(_TokenLimitExceeded value)? tokenLimitExceeded,
+    TResult? Function(_NotFound value)? notFound,
     TResult? Function(_UnrecognizedServerResponse value)?
         unrecognizedServerResponse,
     TResult? Function(_ApiUnavailable value)? apiUnavailable,
   }) {
-    return apiRateLimitExceeded?.call(this);
+    return tokenLimitExceeded?.call(this);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(_ApiRateLimitExceeded value)? apiRateLimitExceeded,
+    TResult Function(_TokenLimitExceeded value)? tokenLimitExceeded,
+    TResult Function(_NotFound value)? notFound,
     TResult Function(_UnrecognizedServerResponse value)?
         unrecognizedServerResponse,
     TResult Function(_ApiUnavailable value)? apiUnavailable,
     required TResult orElse(),
   }) {
-    if (apiRateLimitExceeded != null) {
-      return apiRateLimitExceeded(this);
+    if (tokenLimitExceeded != null) {
+      return tokenLimitExceeded(this);
     }
     return orElse();
   }
 }
 
-abstract class _ApiRateLimitExceeded implements ApiException {
-  const factory _ApiRateLimitExceeded() = _$_ApiRateLimitExceeded;
+abstract class _TokenLimitExceeded implements ApiException {
+  const factory _TokenLimitExceeded() = _$_TokenLimitExceeded;
+}
+
+/// @nodoc
+abstract class _$$_NotFoundCopyWith<$Res> {
+  factory _$$_NotFoundCopyWith(
+          _$_NotFound value, $Res Function(_$_NotFound) then) =
+      __$$_NotFoundCopyWithImpl<$Res>;
+  @useResult
+  $Res call({String sym});
+}
+
+/// @nodoc
+class __$$_NotFoundCopyWithImpl<$Res>
+    extends _$ApiExceptionCopyWithImpl<$Res, _$_NotFound>
+    implements _$$_NotFoundCopyWith<$Res> {
+  __$$_NotFoundCopyWithImpl(
+      _$_NotFound _value, $Res Function(_$_NotFound) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? sym = null,
+  }) {
+    return _then(_$_NotFound(
+      null == sym
+          ? _value.sym
+          : sym // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$_NotFound with DiagnosticableTreeMixin implements _NotFound {
+  const _$_NotFound(this.sym);
+
+  @override
+  final String sym;
+
+  @override
+  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
+    return 'ApiException.notFound(sym: $sym)';
+  }
+
+  @override
+  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+    super.debugFillProperties(properties);
+    properties
+      ..add(DiagnosticsProperty('type', 'ApiException.notFound'))
+      ..add(DiagnosticsProperty('sym', sym));
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$_NotFound &&
+            (identical(other.sym, sym) || other.sym == sym));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, sym);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$_NotFoundCopyWith<_$_NotFound> get copyWith =>
+      __$$_NotFoundCopyWithImpl<_$_NotFound>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() tokenLimitExceeded,
+    required TResult Function(String sym) notFound,
+    required TResult Function() unrecognizedServerResponse,
+    required TResult Function() apiUnavailable,
+  }) {
+    return notFound(sym);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? tokenLimitExceeded,
+    TResult? Function(String sym)? notFound,
+    TResult? Function()? unrecognizedServerResponse,
+    TResult? Function()? apiUnavailable,
+  }) {
+    return notFound?.call(sym);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? tokenLimitExceeded,
+    TResult Function(String sym)? notFound,
+    TResult Function()? unrecognizedServerResponse,
+    TResult Function()? apiUnavailable,
+    required TResult orElse(),
+  }) {
+    if (notFound != null) {
+      return notFound(sym);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_TokenLimitExceeded value) tokenLimitExceeded,
+    required TResult Function(_NotFound value) notFound,
+    required TResult Function(_UnrecognizedServerResponse value)
+        unrecognizedServerResponse,
+    required TResult Function(_ApiUnavailable value) apiUnavailable,
+  }) {
+    return notFound(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_TokenLimitExceeded value)? tokenLimitExceeded,
+    TResult? Function(_NotFound value)? notFound,
+    TResult? Function(_UnrecognizedServerResponse value)?
+        unrecognizedServerResponse,
+    TResult? Function(_ApiUnavailable value)? apiUnavailable,
+  }) {
+    return notFound?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_TokenLimitExceeded value)? tokenLimitExceeded,
+    TResult Function(_NotFound value)? notFound,
+    TResult Function(_UnrecognizedServerResponse value)?
+        unrecognizedServerResponse,
+    TResult Function(_ApiUnavailable value)? apiUnavailable,
+    required TResult orElse(),
+  }) {
+    if (notFound != null) {
+      return notFound(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _NotFound implements ApiException {
+  const factory _NotFound(final String sym) = _$_NotFound;
+
+  String get sym;
+  @JsonKey(ignore: true)
+  _$$_NotFoundCopyWith<_$_NotFound> get copyWith =>
+      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
@@ -253,7 +421,8 @@ class _$_UnrecognizedServerResponse
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() apiRateLimitExceeded,
+    required TResult Function() tokenLimitExceeded,
+    required TResult Function(String sym) notFound,
     required TResult Function() unrecognizedServerResponse,
     required TResult Function() apiUnavailable,
   }) {
@@ -263,7 +432,8 @@ class _$_UnrecognizedServerResponse
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? apiRateLimitExceeded,
+    TResult? Function()? tokenLimitExceeded,
+    TResult? Function(String sym)? notFound,
     TResult? Function()? unrecognizedServerResponse,
     TResult? Function()? apiUnavailable,
   }) {
@@ -273,7 +443,8 @@ class _$_UnrecognizedServerResponse
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? apiRateLimitExceeded,
+    TResult Function()? tokenLimitExceeded,
+    TResult Function(String sym)? notFound,
     TResult Function()? unrecognizedServerResponse,
     TResult Function()? apiUnavailable,
     required TResult orElse(),
@@ -287,7 +458,8 @@ class _$_UnrecognizedServerResponse
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(_ApiRateLimitExceeded value) apiRateLimitExceeded,
+    required TResult Function(_TokenLimitExceeded value) tokenLimitExceeded,
+    required TResult Function(_NotFound value) notFound,
     required TResult Function(_UnrecognizedServerResponse value)
         unrecognizedServerResponse,
     required TResult Function(_ApiUnavailable value) apiUnavailable,
@@ -298,7 +470,8 @@ class _$_UnrecognizedServerResponse
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_ApiRateLimitExceeded value)? apiRateLimitExceeded,
+    TResult? Function(_TokenLimitExceeded value)? tokenLimitExceeded,
+    TResult? Function(_NotFound value)? notFound,
     TResult? Function(_UnrecognizedServerResponse value)?
         unrecognizedServerResponse,
     TResult? Function(_ApiUnavailable value)? apiUnavailable,
@@ -309,7 +482,8 @@ class _$_UnrecognizedServerResponse
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(_ApiRateLimitExceeded value)? apiRateLimitExceeded,
+    TResult Function(_TokenLimitExceeded value)? tokenLimitExceeded,
+    TResult Function(_NotFound value)? notFound,
     TResult Function(_UnrecognizedServerResponse value)?
         unrecognizedServerResponse,
     TResult Function(_ApiUnavailable value)? apiUnavailable,
@@ -372,7 +546,8 @@ class _$_ApiUnavailable
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() apiRateLimitExceeded,
+    required TResult Function() tokenLimitExceeded,
+    required TResult Function(String sym) notFound,
     required TResult Function() unrecognizedServerResponse,
     required TResult Function() apiUnavailable,
   }) {
@@ -382,7 +557,8 @@ class _$_ApiUnavailable
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? apiRateLimitExceeded,
+    TResult? Function()? tokenLimitExceeded,
+    TResult? Function(String sym)? notFound,
     TResult? Function()? unrecognizedServerResponse,
     TResult? Function()? apiUnavailable,
   }) {
@@ -392,7 +568,8 @@ class _$_ApiUnavailable
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? apiRateLimitExceeded,
+    TResult Function()? tokenLimitExceeded,
+    TResult Function(String sym)? notFound,
     TResult Function()? unrecognizedServerResponse,
     TResult Function()? apiUnavailable,
     required TResult orElse(),
@@ -406,7 +583,8 @@ class _$_ApiUnavailable
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(_ApiRateLimitExceeded value) apiRateLimitExceeded,
+    required TResult Function(_TokenLimitExceeded value) tokenLimitExceeded,
+    required TResult Function(_NotFound value) notFound,
     required TResult Function(_UnrecognizedServerResponse value)
         unrecognizedServerResponse,
     required TResult Function(_ApiUnavailable value) apiUnavailable,
@@ -417,7 +595,8 @@ class _$_ApiUnavailable
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_ApiRateLimitExceeded value)? apiRateLimitExceeded,
+    TResult? Function(_TokenLimitExceeded value)? tokenLimitExceeded,
+    TResult? Function(_NotFound value)? notFound,
     TResult? Function(_UnrecognizedServerResponse value)?
         unrecognizedServerResponse,
     TResult? Function(_ApiUnavailable value)? apiUnavailable,
@@ -428,7 +607,8 @@ class _$_ApiUnavailable
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(_ApiRateLimitExceeded value)? apiRateLimitExceeded,
+    TResult Function(_TokenLimitExceeded value)? tokenLimitExceeded,
+    TResult Function(_NotFound value)? notFound,
     TResult Function(_UnrecognizedServerResponse value)?
         unrecognizedServerResponse,
     TResult Function(_ApiUnavailable value)? apiUnavailable,
