@@ -7,6 +7,8 @@ part 'company_detales.g.dart';
 class CompanyDetales with _$CompanyDetales {
   const factory CompanyDetales({
     @JsonKey(name: 'Symbol') required String symbol,
+    @JsonKey(name: 'Name') required String name,
+    @JsonKey(name: 'Description') required String description,
     @JsonKey(name: 'MarketCapitalization', fromJson: int.parse)
         required int marketCapitalisation,
   }) = _CompanyDetales;

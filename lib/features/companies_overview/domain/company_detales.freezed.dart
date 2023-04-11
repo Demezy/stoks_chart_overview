@@ -22,6 +22,10 @@ CompanyDetales _$CompanyDetalesFromJson(Map<String, dynamic> json) {
 mixin _$CompanyDetales {
   @JsonKey(name: 'Symbol')
   String get symbol => throw _privateConstructorUsedError;
+  @JsonKey(name: 'Name')
+  String get name => throw _privateConstructorUsedError;
+  @JsonKey(name: 'Description')
+  String get description => throw _privateConstructorUsedError;
   @JsonKey(name: 'MarketCapitalization', fromJson: int.parse)
   int get marketCapitalisation => throw _privateConstructorUsedError;
 
@@ -40,6 +44,10 @@ abstract class $CompanyDetalesCopyWith<$Res> {
   $Res call(
       {@JsonKey(name: 'Symbol')
           String symbol,
+      @JsonKey(name: 'Name')
+          String name,
+      @JsonKey(name: 'Description')
+          String description,
       @JsonKey(name: 'MarketCapitalization', fromJson: int.parse)
           int marketCapitalisation});
 }
@@ -58,12 +66,22 @@ class _$CompanyDetalesCopyWithImpl<$Res, $Val extends CompanyDetales>
   @override
   $Res call({
     Object? symbol = null,
+    Object? name = null,
+    Object? description = null,
     Object? marketCapitalisation = null,
   }) {
     return _then(_value.copyWith(
       symbol: null == symbol
           ? _value.symbol
           : symbol // ignore: cast_nullable_to_non_nullable
+              as String,
+      name: null == name
+          ? _value.name
+          : name // ignore: cast_nullable_to_non_nullable
+              as String,
+      description: null == description
+          ? _value.description
+          : description // ignore: cast_nullable_to_non_nullable
               as String,
       marketCapitalisation: null == marketCapitalisation
           ? _value.marketCapitalisation
@@ -84,6 +102,10 @@ abstract class _$$_CompanyDetalesCopyWith<$Res>
   $Res call(
       {@JsonKey(name: 'Symbol')
           String symbol,
+      @JsonKey(name: 'Name')
+          String name,
+      @JsonKey(name: 'Description')
+          String description,
       @JsonKey(name: 'MarketCapitalization', fromJson: int.parse)
           int marketCapitalisation});
 }
@@ -100,12 +122,22 @@ class __$$_CompanyDetalesCopyWithImpl<$Res>
   @override
   $Res call({
     Object? symbol = null,
+    Object? name = null,
+    Object? description = null,
     Object? marketCapitalisation = null,
   }) {
     return _then(_$_CompanyDetales(
       symbol: null == symbol
           ? _value.symbol
           : symbol // ignore: cast_nullable_to_non_nullable
+              as String,
+      name: null == name
+          ? _value.name
+          : name // ignore: cast_nullable_to_non_nullable
+              as String,
+      description: null == description
+          ? _value.description
+          : description // ignore: cast_nullable_to_non_nullable
               as String,
       marketCapitalisation: null == marketCapitalisation
           ? _value.marketCapitalisation
@@ -121,6 +153,10 @@ class _$_CompanyDetales implements _CompanyDetales {
   const _$_CompanyDetales(
       {@JsonKey(name: 'Symbol')
           required this.symbol,
+      @JsonKey(name: 'Name')
+          required this.name,
+      @JsonKey(name: 'Description')
+          required this.description,
       @JsonKey(name: 'MarketCapitalization', fromJson: int.parse)
           required this.marketCapitalisation});
 
@@ -131,12 +167,18 @@ class _$_CompanyDetales implements _CompanyDetales {
   @JsonKey(name: 'Symbol')
   final String symbol;
   @override
+  @JsonKey(name: 'Name')
+  final String name;
+  @override
+  @JsonKey(name: 'Description')
+  final String description;
+  @override
   @JsonKey(name: 'MarketCapitalization', fromJson: int.parse)
   final int marketCapitalisation;
 
   @override
   String toString() {
-    return 'CompanyDetales(symbol: $symbol, marketCapitalisation: $marketCapitalisation)';
+    return 'CompanyDetales(symbol: $symbol, name: $name, description: $description, marketCapitalisation: $marketCapitalisation)';
   }
 
   @override
@@ -145,13 +187,17 @@ class _$_CompanyDetales implements _CompanyDetales {
         (other.runtimeType == runtimeType &&
             other is _$_CompanyDetales &&
             (identical(other.symbol, symbol) || other.symbol == symbol) &&
+            (identical(other.name, name) || other.name == name) &&
+            (identical(other.description, description) ||
+                other.description == description) &&
             (identical(other.marketCapitalisation, marketCapitalisation) ||
                 other.marketCapitalisation == marketCapitalisation));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, symbol, marketCapitalisation);
+  int get hashCode =>
+      Object.hash(runtimeType, symbol, name, description, marketCapitalisation);
 
   @JsonKey(ignore: true)
   @override
@@ -171,6 +217,10 @@ abstract class _CompanyDetales implements CompanyDetales {
   const factory _CompanyDetales(
       {@JsonKey(name: 'Symbol')
           required final String symbol,
+      @JsonKey(name: 'Name')
+          required final String name,
+      @JsonKey(name: 'Description')
+          required final String description,
       @JsonKey(name: 'MarketCapitalization', fromJson: int.parse)
           required final int marketCapitalisation}) = _$_CompanyDetales;
 
@@ -180,6 +230,12 @@ abstract class _CompanyDetales implements CompanyDetales {
   @override
   @JsonKey(name: 'Symbol')
   String get symbol;
+  @override
+  @JsonKey(name: 'Name')
+  String get name;
+  @override
+  @JsonKey(name: 'Description')
+  String get description;
   @override
   @JsonKey(name: 'MarketCapitalization', fromJson: int.parse)
   int get marketCapitalisation;
