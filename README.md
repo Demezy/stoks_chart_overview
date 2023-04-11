@@ -1,16 +1,41 @@
-# temp
+# Stocks overview
 
-A new Flutter project.
+Flutter project that uses public api to retrieve stocks info
 
-## Getting Started
+## Stack
 
-This project is a starting point for a Flutter application.
+Highlight packages:
 
-A few resources to get you started if this is your first Flutter project:
+- dio — api fetching
+- flutter_riverpod — DI, app-level state management
+- flutter_hooks — widget level state management
+- freezed — common model methods codegenerator
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+Code:
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+- aimed to follow clean architecture
+- feature first approach
+- reactive UI
+
+Highlights:
+
+- errors are handled
+- Loading is lazy
+- testing is easy because of DI
+
+## Developers
+
+If changing any model, run build runner.
+`flutter pub run build_runner build --delete-conflicting-outputs`
+or `just codegen-watch` for `just` users.
+
+Then standart procedure to run flutter project.
+`flutter run`
+
+## Gallery
+
+![mobile 2](./docs/mobile_2.png)
+![mobile 1](./docs/mobile_1.png)
+![desktop 3](./docs/desktop_3.png)
+![desktop 2](./docs/desktop_2.png)
+![desktop 1](./docs/desktop_1.png)
