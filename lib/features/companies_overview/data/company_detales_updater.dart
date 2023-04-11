@@ -5,26 +5,41 @@ import 'package:stoks_chart_overview/features/companies_overview/domain/company_
 
 typedef CompaniesInfo = List<CompanyDetales>;
 
-class CompanyDetalesUpdater extends StateNotifier<CompaniesInfo> {
+class CompanyDetailsUpdater extends StateNotifier<AsyncValue<CompaniesInfo>> {
   final CompanyRepository companyRepository;
-  CompanyDetalesUpdater(this.companyRepository) : super([]) {
-    try {
-      // ignore: prefer-async-await
-      companyRepository.getTrackedCompanies().then((value) => state = value);
-    } finally {}
+
+  CompanyDetailsUpdater(this.companyRepository)
+      : super(const AsyncValue.loading()) {
+    // load initial data
+    companyRepository.getTrackedCompanies().then((value) {
+      state = AsyncValue.data(value);
+    }).onError((error, stackTrace) {
+      state = AsyncValue.error(error ?? 'Some error occured', stackTrace);
+    });
   }
 
   // Method that retrieve new data from server and update state.
   Future<void> update() async {
     try {
-      state = await companyRepository.getTrackedCompanies();
-    } finally {}
+      state = AsyncValue.loading();
+      final updatedData = await companyRepository.getTrackedCompanies();
+      state = AsyncValue.data(updatedData);
+    } catch (error, stackTrace) {
+      state = AsyncValue.error(error, stackTrace);
+    }
   }
 }
 
-final companyDetalesUpdaterProvider =
-    StateNotifierProvider<CompanyDetalesUpdater, CompaniesInfo>((ref) {
-  final companyRepository =
-      ref.watch<CompanyRepository>(companyRepositoryProvider);
-  return CompanyDetalesUpdater(companyRepository);
+final companyDetailsUpdaterProvider =
+    StateNotifierProvider<CompanyDetailsUpdater, AsyncValue<CompaniesInfo>>(
+  (ref) {
+    final companyRepository = ref.watch(companyRepositoryProvider);
+    return CompanyDetailsUpdater(companyRepository);
+  },
+);
+
+final companyDetailsStreamProvider =
+    StreamProvider<AsyncValue<CompaniesInfo>>((ref) async* {
+  final companyDetails = ref.watch(companyDetailsUpdaterProvider);
+  yield companyDetails;
 });
