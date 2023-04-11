@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:stoks_chart_overview/config/consts.dart';
-import 'package:stoks_chart_overview/features/companies_overview/domain/company_detales.dart';
+import 'package:stoks_chart_overview/features/companies_overview/domain/company_details.dart';
 import 'package:stoks_chart_overview/features/companies_overview/presentation/companies_overview.dart';
 import 'package:stoks_chart_overview/features/company_detailed_view/presentation/company_detailed_view.dart';
 
@@ -17,9 +17,9 @@ final GoRouter _router = GoRouter(
         GoRoute(
           path: Routes.detales,
           builder: (context, state) {
-            final detales = state.extra as CompanyDetales;
+            final details = state.extra as CompanyDetails;
             return CompanyDetailedView(
-              companyDetales: detales,
+              companyDetails: details,
             );
           },
         ),

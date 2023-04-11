@@ -1,16 +1,17 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:stoks_chart_overview/features/companies_overview/data/companies_overview_providers.dart';
-import 'package:stoks_chart_overview/features/companies_overview/domain/company_detales.dart';
+import 'package:stoks_chart_overview/features/companies_overview/domain/company_details.dart';
 import 'package:stoks_chart_overview/features/companies_overview/domain/company_repository.dart';
 
-typedef CompaniesInfo = List<CompanyDetales>;
+typedef CompaniesInfo = List<CompanyDetails>;
 
 class CompanyDetailsUpdater extends StateNotifier<AsyncValue<CompaniesInfo>> {
   final CompanyRepository companyRepository;
 
   CompanyDetailsUpdater(this.companyRepository)
       : super(const AsyncValue.loading()) {
-    // load initial data
+    // Load initial data.
+    // ignore: prefer-async-await
     companyRepository.getTrackedCompanies().then((value) {
       state = AsyncValue.data(value);
     }).onError((error, stackTrace) {
@@ -21,7 +22,7 @@ class CompanyDetailsUpdater extends StateNotifier<AsyncValue<CompaniesInfo>> {
   // Method that retrieve new data from server and update state.
   Future<void> update() async {
     try {
-      state = AsyncValue.loading();
+      state = const AsyncValue.loading();
       final updatedData = await companyRepository.getTrackedCompanies();
       state = AsyncValue.data(updatedData);
     } catch (error, stackTrace) {

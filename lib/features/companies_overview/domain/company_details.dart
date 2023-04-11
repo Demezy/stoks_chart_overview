@@ -1,18 +1,18 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
 
-part 'company_detales.freezed.dart';
-part 'company_detales.g.dart';
+part 'company_details.freezed.dart';
+part 'company_details.g.dart';
 
 @freezed
-class CompanyDetales with _$CompanyDetales {
-  const factory CompanyDetales({
+class CompanyDetails with _$CompanyDetails {
+  const factory CompanyDetails({
     @JsonKey(name: 'Symbol') required String symbol,
     @JsonKey(name: 'Name') required String name,
     @JsonKey(name: 'Description') required String description,
     @JsonKey(name: 'MarketCapitalization', fromJson: int.parse)
         required int marketCapitalisation,
-  }) = _CompanyDetales;
+  }) = _CompanyDetails;
 
-  factory CompanyDetales.fromJson(Map<String, dynamic> json) =>
-      _$CompanyDetalesFromJson(json);
+  factory CompanyDetails.fromJson(Map<String, dynamic> json) =>
+      _$CompanyDetailsFromJson(json);
 }

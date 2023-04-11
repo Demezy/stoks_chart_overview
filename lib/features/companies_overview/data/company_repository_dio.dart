@@ -1,7 +1,8 @@
 import 'package:dio/dio.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:stoks_chart_overview/config/consts.dart';
 import 'package:stoks_chart_overview/exceptions/api_exception.dart';
-import 'package:stoks_chart_overview/features/companies_overview/domain/company_detales.dart';
+import 'package:stoks_chart_overview/features/companies_overview/domain/company_details.dart';
 import 'package:stoks_chart_overview/features/companies_overview/domain/company_repository.dart';
 import 'package:stoks_chart_overview/features/companies_overview/domain/company_tracked_repository.dart';
 
@@ -16,8 +17,8 @@ class CompanyRepositoryDio implements CompanyRepository {
   });
 
   @override
-  Future<CompanyDetales> getCompanyDetalesBySym(String companySym) async {
-    final companyDetalesResponse = await dio.get<Json>(
+  Future<CompanyDetails> getCompanyDetailsBySym(String companySym) async {
+    final companyDetailsResponse = await dio.get<Json>(
       '/query',
       queryParameters: <String, dynamic>{
         'symbol': companySym,
@@ -25,17 +26,20 @@ class CompanyRepositoryDio implements CompanyRepository {
         'apikey': Consts.apiKey,
       },
     );
-    if (companyDetalesResponse.statusCode != 200 ||
-        companyDetalesResponse.data == null) {
+    if (companyDetailsResponse.statusCode != 200 ||
+        companyDetailsResponse.data == null) {
       throw const ApiException.apiUnavailable();
     }
-    if (companyDetalesResponse.data!['Note'] != null ||
-        companyDetalesResponse.data!.length <= 1) {
-      throw const ApiException.apiRateLimitExceeded();
+    if (companyDetailsResponse.data!.isEmpty) {
+      throw ApiException.notFound(companySym);
     }
-    late final CompanyDetales companyDetales;
+    if (companyDetailsResponse.data!['Note'] != null ||
+        companyDetailsResponse.data!.length == 1) {
+      throw ApiException.notFound(companySym);
+    }
+    late final CompanyDetails companyDetails;
     try {
-      companyDetales = CompanyDetales.fromJson(companyDetalesResponse.data!);
+      companyDetails = CompanyDetails.fromJson(companyDetailsResponse.data!);
     } on Exception catch (e) {
       if (e is TypeError) {
         Error.throwWithStackTrace(
@@ -45,15 +49,15 @@ class CompanyRepositoryDio implements CompanyRepository {
       }
       rethrow;
     }
-    return companyDetales;
+    return companyDetails;
   }
 
   @override
-  Future<List<CompanyDetales>> getTrackedCompanies() async {
+  Future<List<CompanyDetails>> getTrackedCompanies() async {
     final trackedCompanySymbols =
         await companyTrackedRepository.getCompanySymbols();
     final futureCompanyDetails =
-        trackedCompanySymbols.map(getCompanyDetalesBySym).toList();
+        trackedCompanySymbols.map(getCompanyDetailsBySym).toList();
     return Future.wait(futureCompanyDetails);
   }
 }
