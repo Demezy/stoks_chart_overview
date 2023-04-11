@@ -1,5 +1,6 @@
 import 'package:dio/dio.dart';
 import 'package:stoks_chart_overview/config/consts.dart';
+import 'package:stoks_chart_overview/exceptions/api_exception.dart';
 import 'package:stoks_chart_overview/features/companies_overview/domain/company_detales.dart';
 import 'package:stoks_chart_overview/features/companies_overview/domain/company_repository.dart';
 import 'package:stoks_chart_overview/features/companies_overview/domain/company_tracked_repository.dart';
@@ -26,16 +27,23 @@ class CompanyRepositoryDio implements CompanyRepository {
     );
     if (companyDetalesResponse.statusCode != 200 ||
         companyDetalesResponse.data == null) {
-      throw UnimplementedError();
+      throw const ApiException.apiUnavailable();
     }
-    if (companyDetalesResponse.data!['Note'] != null) {
-      throw UnimplementedError();
+    if (companyDetalesResponse.data!['Note'] != null ||
+        companyDetalesResponse.data!.length <= 1) {
+      throw const ApiException.apiRateLimitExceeded();
     }
     late final CompanyDetales companyDetales;
     try {
       companyDetales = CompanyDetales.fromJson(companyDetalesResponse.data!);
-    } on TypeError {
-      throw UnimplementedError();
+    } on Exception catch (e) {
+      if (e is TypeError) {
+        Error.throwWithStackTrace(
+          const ApiException.unrecognizedServerResponse(),
+          StackTrace.current,
+        );
+      }
+      rethrow;
     }
     return companyDetales;
   }
