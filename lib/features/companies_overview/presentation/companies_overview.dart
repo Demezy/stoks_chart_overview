@@ -8,7 +8,7 @@ import 'package:go_router/go_router.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:stoks_chart_overview/config/consts.dart';
 import 'package:stoks_chart_overview/exceptions/api_exception.dart';
-import 'package:stoks_chart_overview/features/companies_overview/data/company_detales_updater_safe.dart';
+import 'package:stoks_chart_overview/features/companies_overview/data/company_details_updater_safe.dart';
 
 class CompaniesOverview extends HookConsumerWidget {
   const CompaniesOverview({super.key});
@@ -17,7 +17,8 @@ class CompaniesOverview extends HookConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final hoveredIndex = useState<int>(0);
     final companyesDetails = ref.watch(companyDetailsUpdaterProviderSafe);
-    final pieSize = min(MediaQuery.of(context).size.width / 2, 300).toDouble();
+    final pieSize =
+        min(MediaQuery.of(context).size.width / 1.5, 300).toDouble();
     return Scaffold(
       appBar: AppBar(
         title: const Text('main page'),
@@ -48,9 +49,8 @@ class CompaniesOverview extends HookConsumerWidget {
               SizedBox(
                 width: pieSize,
                 height: pieSize,
-                // aspectRatio: 1.3,
                 child: AspectRatio(
-                  aspectRatio: 1,
+                  aspectRatio: 1.3,
                   child: PieChart(
                     PieChartData(
                       pieTouchData: PieTouchData(
@@ -64,9 +64,10 @@ class CompaniesOverview extends HookConsumerWidget {
                           final sectionIndex = pieTouchResponse
                               .touchedSection!.touchedSectionIndex;
                           hoveredIndex.value = sectionIndex;
-                          if (event is FlTapUpEvent) {
+                          if (event is FlTapUpEvent ||
+                              event is FlTapDownEvent) {
                             context.push(
-                              '/${Routes.detales}',
+                              '${Routes.home}${Routes.detales}',
                               extra: details[sectionIndex].value,
                             );
                           }
@@ -105,10 +106,13 @@ class CompaniesOverview extends HookConsumerWidget {
                     child: Row(
                       children: [
                         const Icon(Icons.error_outline),
-                        Text(
-                          error is ApiException
-                              ? error.message()
-                              : error.toString(),
+                        Flexible(
+                          child: Text(
+                            error is ApiException
+                                ? error.message()
+                                : error.toString(),
+                                softWrap: true,
+                          ),
                         ),
                       ],
                     ),
