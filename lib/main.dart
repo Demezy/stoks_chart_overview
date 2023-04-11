@@ -4,7 +4,7 @@ import 'package:go_router/go_router.dart';
 import 'package:stoks_chart_overview/config/consts.dart';
 import 'package:stoks_chart_overview/features/companies_overview/domain/company_detales.dart';
 import 'package:stoks_chart_overview/features/companies_overview/presentation/companies_overview.dart';
-import 'package:stoks_chart_overview/features/companies_overview/presentation/company_detailed_view.dart';
+import 'package:stoks_chart_overview/features/company_detailed_view/presentation/company_detailed_view.dart';
 
 final GoRouter _router = GoRouter(
   routes: <RouteBase>[
