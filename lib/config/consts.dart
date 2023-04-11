@@ -7,8 +7,14 @@ class Consts {
     'FB',
   ];
   
-  static int apiRequestDelayMillisec = 1000;
   static String apiKey = 'demo';
 
   Consts._();
+}
+
+class Routes {
+  static const home = '/';
+  static const detales = 'detales';
+
+  Routes._();
 }
